@@ -1,18 +1,30 @@
 import React from "react"
-import { Link } from "gatsby"
+import { Link, graphql } from "gatsby"
 
-import Layout from "../components/layout"
+import { chunk, sum } from "lodash"
+
 import SEO from "../components/seo"
+import Gallery from "../templates/gallery.js"
 
 import styles from "./index.module.css"
 
-const IndexPage = () => (
-  <Layout>
-    <SEO title="Qice Sun" />
+export default ({ data }) => {
+  return (
+    <>
+      <Gallery items={data.allMarkdownRemark.edges} />
 
-    <div className={styles.wrapper}>
-    </div>
-  </Layout>
-)
+      <SEO title="Works" />
+    </>
+  )
+}
 
-export default IndexPage
+export const query = graphql`
+  query($tag: String = "") {
+    allMarkdownRemark(
+      sort: { fields: [frontmatter___serial] }
+      filter: { frontmatter: { tags: { in: [$tag] } } }
+    ) {
+      ...Items
+    }
+  }
+`

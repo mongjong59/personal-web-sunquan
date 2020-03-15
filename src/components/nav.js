@@ -23,7 +23,7 @@ const Nav = ({ siteTitle }) => (
       <h6 className={styles.contact}>
         Email: sunquan.1991@yahoo.com
         <br />
-        GitHub: <a href="https://github.com/sunquan1991" target="_blank">https://github.com/sunquan1991</a>
+        GitHub: <a href="https://github.com/sunquan1991" target="_blank" rel="noopener noreferrer">https://github.com/sunquan1991</a>
         <br />
         © 2020, Built with
         {` `}
