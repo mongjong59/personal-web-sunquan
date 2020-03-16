@@ -1,13 +1,17 @@
 import React from "react"
 import PropTypes from "prop-types"
 import { useStaticQuery, graphql } from "gatsby"
+import { library } from "@fortawesome/fontawesome-svg-core"
+import { fab } from "@fortawesome/free-brands-svg-icons"
 
 import "normalize.css"
 import "./layout.css"
 
 import Nav from "./nav"
 
-const Layout = ({ children }) => {
+library.add(fab)
+
+const Layout = ({ children, navTranslucent }) => {
   const data = useStaticQuery(graphql`
     query SiteTitleQuery {
       site {
@@ -20,7 +24,10 @@ const Layout = ({ children }) => {
 
   return (
     <>
-      <Nav siteTitle={data.site.siteMetadata.title} />
+      <Nav
+        siteTitle={data.site.siteMetadata.title}
+        translucent={navTranslucent}
+      />
       <main>{children}</main>
     </>
   )

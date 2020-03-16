@@ -1,28 +1,21 @@
 import React from "react"
-import { Link, graphql } from "gatsby"
+import { graphql } from "gatsby"
 
-import { chunk, sum } from "lodash"
-
-import SEO from "../components/seo"
-import Gallery from "../templates/gallery.js"
+import Gallery from "../components/gallery.js"
 
 import styles from "./index.module.css"
 
 export default ({ data }) => {
   return (
-    <>
-      <Gallery items={data.allMarkdownRemark.edges} />
-
-      <SEO title="Works" />
-    </>
+    <Gallery items={data.allMarkdownRemark.edges} title="Works" />
   )
 }
 
 export const query = graphql`
-  query($tag: String = "") {
+  query {
     allMarkdownRemark(
       sort: { fields: [frontmatter___serial] }
-      filter: { frontmatter: { tags: { in: [$tag] } } }
+      filter: { frontmatter: { hide: { ne: true } } }
     ) {
       ...Items
     }

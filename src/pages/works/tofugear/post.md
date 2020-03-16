@@ -1,12 +1,11 @@
 ---
-title: "Tofugear"
-tags: ["w", ""]
-serial: 2-1
-cover: cover.png
+title: Tofugear
+tags: [w, ""]
+serial: 2-2
+cover: cover.jpg
+excerpt: A retail solution that connects customers, sales and pruducts through web, smartphones, tablets and RFID technology
+roles: ["Develop features for the web app working on both frontend and backend", Refactor the web app with Redux, Implement responsive web design for nice cross-platform experience, Implement animations with CSS3 and JavaScript]
+technologies: [react, redux, webpeck, js, css3-alt, html5, rails, pusher]
 ---
-
-Pandas are really sweet.
-
-Here's a video of a panda eating sweets.
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/4n0xNbfJLR8" frameborder="0" allowfullscreen></iframe>
+`youtube: XzjMRP4DSBo`
+<h5>Implementation of the solution for one of our clients, <i>House of Blue Jeans</i> in Netherlands</h5>

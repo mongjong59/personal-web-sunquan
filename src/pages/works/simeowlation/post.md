@@ -3,7 +3,8 @@ title: "Simeolation"
 tags: ["u", ""]
 serial: 1-2
 cover: cover.jpg
-role: "Developer of the web app"
+roles: [Develop the VR game, Contribute to the game content and design]
+hide: true
 ---
 
 Pandas are really sweet.

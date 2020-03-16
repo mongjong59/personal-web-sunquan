@@ -1,80 +1,103 @@
 import React from "react"
 import { Link, graphql } from "gatsby"
-import Img from "gatsby-image"
-import { Box } from "rebass"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 
 import Layout from "../components/layout"
+import SEO from "../components/seo"
 
-import styles from "./gallery.module.css"
+import styles from "./post.module.css"
 
-const Item = ({ parent, frontmatter, rowAspectRatioSum }) => {
-  const { fluid } = frontmatter.cover.childImageSharp
-  return(
-    <Box
-      as={"a"}
-      href={`/works/${parent.relativeDirectory}`}
-      key={frontmatter.serial}
-      width={`${(fluid.aspectRatio / rowAspectRatioSum) * 100}%`}
-      css={{ display: 'inline-block' }}
-    >
-      <Img fluid={fluid}></Img>
-    </Box>
-  )
-}
+export default ({ data }) => {
+  const { markdownRemark } = data
+  const { frontmatter, html } = markdownRemark
+  const { title, excerpt, roles, technologies, sourceCode } = frontmatter
+  console.log(sourceCode)
+  const TECHNOLOGY_NAMES = {
+    vuejs: "Vue.js",
+    websocket: "WebSocket",
+    webpeck: "webpack",
+    jquery: "jQuery",
+    p5js: "p5.js",
+    "node-js": "Node.js",
+    js: "Vanilla JavaScript",
+    graphql: "GraphQL",
+    "css3-alt": "CSS3",
+    html5: "HTML5",
+    xml: "XML",
+    rails: "Rails",
+    aws: "AWS"
+  }
 
-export default ({ items }) => {
-  const rows = chunk(items, 3);
-
-  const itemsPerRowByBreakpoints = [2, 5]
-
-  const aspectRatios = items.map(
-    item => item.frontmatter.cover.childImageSharp.fluid.aspectRatio
-  )
-
-  const rowAspectRatioSums = itemsPerRowByBreakpoints.map(itemsPerRow =>
-    chunk(aspectRatios, itemsPerRow).map(
-      rowAspectRatios => sum(rowAspectRatios)
-    )
-  )
+  const sourceCodeHref = `https://github.com/sunquan1991/${sourceCode}`
 
   return (
-    <Layout>
-      <div className={styles.wrapper}>
-        {
-          items.map((item, i) => (
-            <Item
-              {...{...item.node}} rowAspectRatioSum={rowAspectRatioSum} />
-          ))
-          return row.map(item =>
+      <Layout navTranslucent>
+        <div className={styles.wrapper}>
+          <h1 className={styles.header}>
+            {title}
+          </h1>
+          <h5
+            className={styles.excerpt}
+            dangerouslySetInnerHTML={{ __html: excerpt }}
+          />
+          <h5 className={styles.roles}>
+            Roles:
+            <ul>
+              {roles.map(r => <li>{r}</li>)}
+            </ul>
+          </h5>
+          <h3>
+            {
+              technologies && technologies.map((t, i) => {
+                let name = TECHNOLOGY_NAMES[t]
+                if (!name) {
+                  let string_array = t.split(" ")
+                  string_array = string_array.map(str =>
+                    str.charAt(0).toUpperCase() + str.slice(1)
+                  )
+                  name = string_array.join(" ")
+                }
 
-          )
-        })}
-      </div>
-    </Layout>
+                return (
+                  <span className={styles.technology}>
+                    <FontAwesomeIcon icon={["fab", t]} /> {name}
+                    {i < technologies.length - 1 && ","}
+                  </span>
+                )
+              })
+            }
+          </h3>
+          <h3 className={styles.sourceCode}>
+            {
+              sourceCode &&
+                <>
+                  <FontAwesomeIcon
+                    icon={["fab", "github"]}
+
+                  /> Source Code:  <a href={sourceCodeHref} target="_blank" rel="noopener noreferrer">{sourceCodeHref}</a>
+                </>
+            }
+          </h3>
+          <div dangerouslySetInnerHTML={{ __html: html }} />
+        </div>
+        <SEO title={title} />
+      </Layout>
   )
 }
 
-
 export const query = graphql`
-  fragment Post on MarkdownRemarkEdge {
-    node{
-      parent {
-        ... on File {
-          relativeDirectory
-        }
-      }
+  query($id: String!) {
+    markdownRemark(
+      id: { eq: $id }
+    ) {
       frontmatter {
         title
-        serial
-        cover {
-          childImageSharp {
-            fluid {
-              aspectRatio
-              ...GatsbyImageSharpFluid
-            }
-          }
-        }
+        excerpt
+        roles
+        technologies
+        sourceCode
       }
+      html
     }
   }
 `

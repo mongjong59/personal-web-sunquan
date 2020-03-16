@@ -1,0 +1,45 @@
+.wrapper {
+  padding: 2rem 0;
+  max-width: 600px;
+  margin: 0 auto;
+  height: 100%;
+  line-height: 1.9rem;
+}
+
+h2, h3, h4, h5 {
+  margin: 0.55rem 0 1.1rem;
+}
+
+.wrapper a {
+  text-decoration: underline;
+}
+
+.wrapper img {
+  width: 100%;
+}
+
+.wrapper ul {
+  margin: 0.5rem 0;
+  padding-inline-start: 1.5rem;
+}
+
+.header {
+  font-size: 3rem;
+  line-height: 3rem;
+  margin-bottom: 1rem;
+}
+
+.excerpt {
+  padding-bottom: 1rem;
+  border-bottom: 3px solid white;
+}
+
+.technology {
+  vertical-align: top;
+  display: inline-block;
+  padding-right: 0.7rem;
+}
+
+.technology, .sourceCode {
+  font-family: monospace;
+}

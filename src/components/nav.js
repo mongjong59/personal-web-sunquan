@@ -3,8 +3,8 @@ import PropTypes from "prop-types"
 import React from "react"
 import styles from "./nav.module.css"
 
-const Nav = ({ siteTitle }) => (
-  <nav className={styles.wrapper}>
+const Nav = ({ siteTitle, translucent }) => (
+  <nav className={styles.wrapper} style={{ opacity: translucent ? "20%" : "100%" }}>
     <div className={styles.main}>
       <h1 className={styles.siteTitle}>
         <Link className={styles.siteTitleText} to="/">{siteTitle}</Link>
@@ -28,6 +28,7 @@ const Nav = ({ siteTitle }) => (
         © 2020, Built with
         {` `}
         <a href="https://www.gatsbyjs.org">Gatsby</a>
+        Source Code: 
       </h6>
     </div>
   </nav>
