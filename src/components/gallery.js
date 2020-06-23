@@ -21,7 +21,7 @@ export default ({ items, itemsPerRow }) => {
   )
 
   return (
-    <Layout>
+    <>
       <div className={styles.wrapper}>
         {
           items.map((item, i) => (
@@ -37,7 +37,7 @@ export default ({ items, itemsPerRow }) => {
       </div>
 
       <SEO title="Works" />
-    </Layout>
+    </>
   )
 }
 

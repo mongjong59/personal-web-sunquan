@@ -1,7 +1,7 @@
 ---
 title: p5-fireworks
 tags: [w, ""]
-serial: 1-3
+serial: 2-3
 cover: cover.png
 excerpt: Set off beautiful fireworks in your browser
 roles: [Develop the p5.js sketch]

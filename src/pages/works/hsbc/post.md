@@ -1,7 +1,7 @@
 ---
-title: HSBC Credit Card Rewards Online Catalogue
+title: HSBC Rewards Catalogue
 tags: [w, ""]
-serial: 2-3
+serial: 1-3
 cover: cover.jpg
 excerpt: A web app presenting information for credit card rewards
 roles: [Develop the web app]

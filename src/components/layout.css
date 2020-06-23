@@ -1,6 +1,7 @@
 html {
-  background: black;
-  color: white;
+  background: white;
+  color: black;
+  font-family: "Times New Roman", serif;
 }
 
 html, body, body > div, body > div > div {

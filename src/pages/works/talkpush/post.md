@@ -1,7 +1,7 @@
 ---
 title: Talkpush
 tags: [w, ""]
-serial: 2-1
+serial: 1-1
 cover: cover.jpg
 excerpt: An HR management system that automates high-volume recruitment and help recruiters communicate with and manage candidates as well as providing insights through data visualization and data analytics
 roles: [Develop the web app and REST API, Develop the first released versions of the chatbot]

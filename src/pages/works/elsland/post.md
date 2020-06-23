@@ -1,7 +1,7 @@
 ---
 title: Elsland
 tags: [w, u, ""]
-serial: 1-1
+serial: 2-1
 cover: cover.jpg
 excerpt: "A multiplayer cross-platform interactive narrative experience"
 roles: [Develop the web app, Contribute to the content and the visual]

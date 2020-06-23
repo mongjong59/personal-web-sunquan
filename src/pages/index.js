@@ -1,13 +1,16 @@
 import React from "react"
 import { graphql } from "gatsby"
 
+import Layout from "../components/layout"
 import Gallery from "../components/gallery.js"
 
 import styles from "./index.module.css"
 
 export default ({ data }) => {
   return (
-    <Gallery items={data.allMarkdownRemark.edges} title="Works" />
+    <Layout>
+      <Gallery items={data.allMarkdownRemark.edges} title="Works" />
+    </Layout>
   )
 }
 

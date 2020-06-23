@@ -1,5 +1,6 @@
 import React from "react"
 import { Box } from "rebass"
+import { Link } from "gatsby"
 import Img from "gatsby-image"
 
 export default ({
@@ -17,8 +18,8 @@ export default ({
 
   return(
     <Box
-      as={"a"}
-      href={`/works/${parent.relativeDirectory}`}
+      as={Link}
+      to={`/works/${parent.relativeDirectory}`}
       key={frontmatter.serial}
       width={widths}
       css={{ display: 'inline-block', maxWidth: "60%" }}

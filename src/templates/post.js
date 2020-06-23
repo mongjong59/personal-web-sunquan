@@ -9,9 +9,9 @@ import styles from "./post.module.css"
 
 export default ({ data }) => {
   const { markdownRemark } = data
-  const { frontmatter, html } = markdownRemark
+  const { parent, frontmatter, html } = markdownRemark
   const { title, excerpt, roles, technologies, sourceCode } = frontmatter
-  console.log(sourceCode)
+  const slug = parent.relativeDirectory
   const TECHNOLOGY_NAMES = {
     vuejs: "Vue.js",
     websocket: "WebSocket",
@@ -31,22 +31,16 @@ export default ({ data }) => {
   const sourceCodeHref = `https://github.com/sunquan1991/${sourceCode}`
 
   return (
-      <Layout navTranslucent>
+      <Layout navTranslucent post={slug}>
         <div className={styles.wrapper}>
           <h1 className={styles.header}>
             {title}
           </h1>
-          <h5
+          <h3
             className={styles.excerpt}
             dangerouslySetInnerHTML={{ __html: excerpt }}
           />
-          <h5 className={styles.roles}>
-            Roles:
-            <ul>
-              {roles.map(r => <li>{r}</li>)}
-            </ul>
-          </h5>
-          <h3>
+          <div>
             {
               technologies && technologies.map((t, i) => {
                 let name = TECHNOLOGY_NAMES[t]
@@ -66,18 +60,17 @@ export default ({ data }) => {
                 )
               })
             }
-          </h3>
-          <h3 className={styles.sourceCode}>
+          </div>
+          <div className={styles.sourceCode}>
             {
               sourceCode &&
                 <>
                   <FontAwesomeIcon
                     icon={["fab", "github"]}
-
                   /> Source Code:  <a href={sourceCodeHref} target="_blank" rel="noopener noreferrer">{sourceCodeHref}</a>
                 </>
             }
-          </h3>
+          </div>
           <div dangerouslySetInnerHTML={{ __html: html }} />
         </div>
         <SEO title={title} />
@@ -90,6 +83,11 @@ export const query = graphql`
     markdownRemark(
       id: { eq: $id }
     ) {
+      parent {
+        ... on File {
+          relativeDirectory
+        }
+      }
       frontmatter {
         title
         excerpt
